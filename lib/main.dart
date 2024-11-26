@@ -47,6 +47,21 @@ class _HomePageState extends State<HomePage> {
     const Page4(),
   ];
 
+  String checkTitle(){
+    if (globals.pageIndex == 1){
+      return 'Data';
+    }
+    else if (globals.pageIndex == 0){
+      return 'Timer';
+    }
+    else {
+      return 'My Profile';
+    }
+
+  }
+
+  String text = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +69,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         
         title: Text(
-          "Timer",
+          checkTitle(),
           style: TextStyle(
             color: const Color.fromARGB(255, 152, 124, 157),
             fontSize: 25,
@@ -93,6 +108,7 @@ class _HomePageState extends State<HomePage> {
                   setState(() {
                     globals.pageIndex = 1;
                   });
+                  checkTitle();
                 },
                 icon: globals.pageIndex == 1
                     ? const Icon(
@@ -124,6 +140,7 @@ class _HomePageState extends State<HomePage> {
                   setState(() {
                     globals.pageIndex = 0;
                   });
+                  checkTitle();
                 },
                 icon: globals.pageIndex == 0
                     ? const Icon(
@@ -155,6 +172,7 @@ class _HomePageState extends State<HomePage> {
                   setState(() {
                     globals.pageIndex = 3;
                   });
+                  checkTitle();
                 },
                 icon: globals.pageIndex == 3
                     ? const Icon(
