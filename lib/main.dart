@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:practice_app/pages/profile2.dart';
 import 'dart:async';
-import 'pages/page2.dart';
-import 'pages/page3.dart';
-import 'pages/page4.dart';
+import 'pages/data.dart';
+import 'pages/profile.dart';
 import 'other/globals.dart' as globals;
 
 void main() {
@@ -19,10 +19,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Bottom NavBar Demo',
       theme: ThemeData(
-        primaryColor: const Color.fromARGB(255, 255, 123, 0),
-        splashColor: const Color.fromARGB(255, 255, 123, 0),
-        highlightColor: const Color.fromARGB(255, 80, 80, 80),
-        hoverColor: const Color.fromARGB(255, 80, 80, 80),
+        primaryColor: const Color.fromRGBO(53,92,125, 1),
+        splashColor: const Color.fromRGBO(114,90,122, 1),
+        highlightColor: const Color.fromRGBO(197,108,134, 1),
+        hoverColor: const Color.fromRGBO(255,117,130, 1),
+        dialogBackgroundColor: const Color.fromRGBO(45, 56, 78, 1)
       ),
       debugShowCheckedModeBanner: false,
       home: const HomePage(),
@@ -42,9 +43,10 @@ class _HomePageState extends State<HomePage> {
 
   final pages = [
     const main_page(),
-    const Page2(),
-    const Page3(),
-    const Page4(),
+    const data(),
+    const profile(),
+    const profile2(),
+
   ];
 
   String checkTitle(){
@@ -65,19 +67,19 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 80, 80, 80),
+      backgroundColor: const Color.fromRGBO(45, 56, 78, 1),
       appBar: AppBar(
         
         title: Text(
           checkTitle(),
           style: TextStyle(
-            color: const Color.fromARGB(255, 152, 124, 157),
+            color: const Color.fromRGBO(255, 255, 255, 1),
             fontSize: 25,
             fontWeight: FontWeight.w600,
           ),
         ),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 80, 80, 80),
+        backgroundColor: const Color.fromRGBO(45, 56, 78, 1),
       ),
       body: SafeArea(child: pages[globals.pageIndex],
       ), 
@@ -89,7 +91,7 @@ class _HomePageState extends State<HomePage> {
     return Container(
       height: 80,  // Increased height to fit text
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 152, 124, 157),
+        color: const Color.fromRGBO(197,108,134, 1),
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
@@ -253,7 +255,7 @@ class _main_pageState extends State<main_page> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color.fromARGB(255, 80, 80, 80),
+      color: const Color.fromRGBO(45, 56, 78, 1),
       child: 
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -271,12 +273,12 @@ class _main_pageState extends State<main_page> {
                     shape: BoxShape.circle,  // this one is use for make the circle on ui.
                     color: Colors.grey.withOpacity(0.1),
                     border: Border.all(
-                      color: Color.fromARGB(255, 47, 50, 50),
+                      color: const Color.fromARGB(255, 38, 47, 66),
                       width: 4,
                     ),
                   ),
                   child: Text(returnFormattedText(), style: TextStyle(
-                    color: Colors.black,
+                    color: Color.fromRGBO(255, 255, 255, 1),
                     fontSize: 40,
                     fontWeight: FontWeight.bold,
                   ),),
