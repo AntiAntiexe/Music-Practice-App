@@ -1,14 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mysql1/mysql1.dart';
 import 'package:practice_app/pages/profile2.dart';
 import 'dart:async';
 import 'pages/data.dart';
 import 'pages/profile.dart';
 import 'other/globals.dart' as globals;
 
-void main() {
+Future<void> main() async {
   runApp(const MyApp());
+
+    final conn = await MySqlConnection.connect(ConnectionSettings(
+
+    host: 'localhost',
+
+    port: 3306,
+
+    user: 'root',
+
+    password: 'Dibat2009',
+
+    db: 'practice_app'));
+
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -61,6 +76,8 @@ class _HomePageState extends State<HomePage> {
     }
 
   }
+
+  
 
   String text = '';
 
@@ -211,6 +228,12 @@ class main_page extends StatefulWidget {
 }
 
 class _main_pageState extends State<main_page> {
+  var conn;
+
+  
+  
+
+
 
   late Stopwatch stopwatch;
   late Timer t;
@@ -293,6 +316,24 @@ class _main_pageState extends State<main_page> {
                 },
                 padding: EdgeInsets.all(0),
                 child: Text("Reset", style: TextStyle(
+                  color: Colors.red,
+                  fontWeight: FontWeight.bold,
+                ),),
+              ),
+              
+              CupertinoButton(     // this the cupertino button and here we perform all the reset button function
+                onPressed: () async {
+                  final result = await conn.query("SELECT * FROM practice_app.practice_log");
+
+                for (var row in result) {
+
+                    print('Name: ${row['idpractice_log']}, Email: ${row['time']}, Instrument: ${row['instrument']}, Genre: ${row['genre']}');
+
+                }
+                  
+                },
+                padding: EdgeInsets.all(0),
+                child: Text("Connect and add", style: TextStyle(
                   color: Colors.red,
                   fontWeight: FontWeight.bold,
                 ),),
